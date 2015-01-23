@@ -38,5 +38,4 @@ object ExampleAuthorization extends App {
         println("whelp.")
     }
   }
-
 }
