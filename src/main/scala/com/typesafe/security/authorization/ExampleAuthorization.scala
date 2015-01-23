@@ -29,6 +29,14 @@ object ExampleAuthorization extends App {
     val org2Read = CanRead(org2)
     println(s"$org2 is readable by $currentUser: $org2Read")
 
+    try {
+      CanRead.lambda(group) {
+        println("Can execute lambda!")
+      }
+    } catch {
+      case e:UnauthorizedException =>
+        println("whelp.")
+    }
   }
 
 }
