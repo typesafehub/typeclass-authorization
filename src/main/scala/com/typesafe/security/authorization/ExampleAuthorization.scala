@@ -10,9 +10,6 @@ case class ExampleSubject(name: String) extends Subject
  * Imagine this is a controller.
  */
 object ExampleAuthorization extends App {
-  import Organization.OrganizationReadable
-  import Group.GroupReadable
-
   val users = Set("jeff", "steve", "mutt")
 
   val group = new Group(Set("jeff", "steve"))

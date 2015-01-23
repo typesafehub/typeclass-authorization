@@ -22,7 +22,6 @@ object Organization {
       }
     }
 
-    /*
     def readableBlock[T](org: Organization)(block: => T)(implicit context: SecurityContext): T = {
       if (isReadable(org, context)) {
         block
@@ -30,6 +29,5 @@ object Organization {
         throw new UnauthorizedException("Not authorized")
       }
     }
-    */
   }
 }
