@@ -19,7 +19,7 @@ object CanRead {
 
   def apply[SO <: SecuredObject](so: SO)(implicit ev: Readable[SO], context: SecurityContext): Boolean = ev.isReadable(so, context)
 
-  //def lambda[SO, T](so: SO)(block: => T)(implicit ev: Readable[SO], context: SecurityContext): T = ev.readableBlock(so)(block)(context)
+  //def lambda[SO <: SecuredObject, T](so: SO)(block: => T)(implicit ev: Readable[SO], context: SecurityContext): T = ev.readableBlock(so)(block)(context)
 }
 
 class UnauthorizedException(message: String) extends Exception(message)
