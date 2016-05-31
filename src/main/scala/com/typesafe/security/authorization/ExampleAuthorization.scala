@@ -24,7 +24,7 @@ object ExampleAuthorization extends App {
      * Returns the execution of the block if the group is readable by the current context.
      */
     def readable[T](block: => T)(implicit ev: Readable[Group], context: SecurityContext): T = {
-      ev.readableBlock(this)(block)(context)
+      ev.apply(this)(block)
     }
   }
 
@@ -44,7 +44,7 @@ object ExampleAuthorization extends App {
    * This implicit evidence provides the "glue" to connect a Readable to a Group.
    */
   implicit object ExampleSubjectGroupReadable extends Readable[Group] {
-    def isReadable(group: Group, context: SecurityContext): Boolean = {
+    def apply(group: Group, context: SecurityContext): Boolean = {
       context.subject match {
         case ExampleSubject(name) =>
           group.contains(name)
@@ -58,7 +58,7 @@ object ExampleAuthorization extends App {
    * This implicit evidence provides the type class glue to connect a Readable with an Organization.
    */
   implicit object ExampleSubjectOrganizationReadable extends Readable[Organization] {
-    def isReadable(org: Organization, context: SecurityContext): Boolean = {
+    def apply(org: Organization, context: SecurityContext): Boolean = {
       context.subject match {
         case ExampleSubject(name) =>
           org.isAdministeredBy(name)
